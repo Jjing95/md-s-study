@@ -92,4 +92,66 @@ getBase64:function(data,callback){
 
 ### 2、项目关键技术点
 #### 1）[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/blob/main/organizeLayers.md)
-#### 2）[ani_config、effect_config以及res_config(帧动画、音效以及分部加载)的配置规范]()
+#### 2）ani_config、effect_config以及res_config(帧动画、音效以及分部加载)的配置规范
+* 帧动画配置文件定义规范</br>
+`[name,left(帧动画的top值),center(帧动画的中心位置),0(移动的x),0(移动的y),0(移动的时间),isplayed(是否已经播放过),isloop(是否循环播放),times(如果为非循环的帧动画，需要重复展示帧动画的次数)]`
+```javascript
+var anis=[
+[name,left,center,0,0,0,isplayed,isloop,1],
+[name,left,center,0,0,0,isplayed,isloop,1],
+...
+]
+```
+* 音效配置文件定义规范</br>
+`[name,y（音乐开始播放的y）,y+h（音乐结束播放的y),0,null,isloop(是否循环播放)]`
+```javascript
+var effects=[
+[name,y,y+h,0,null,loop],
+[name,y,y+h,0,null,loop],
+...
+]
+```
+* 分部加载res_config文件上方定义规范</br>
+```javascript
+game.resList=[
+	['1',0,4800,false,8], //fales可以直接改为true
+	['2',500,10000,false,2],
+	['3',2900,14318,false,2]
+];
+//123是psd处理时a后面的数字 0，500，2900是指开始加载的位置（提前加载），14318是最大的位置（也就是最后的位置），false代表是否加载过，8，2，2对应精灵图数分别有多少
+```
+#### 3）实现长图滑动的关键代码
+```javascript
+this.setCallback(
+    function (touch, event) {
+        // console.log('touch end');
+        canAutoScroll = true;
+    },
+    function (touch, event) {
+        var delta = touch.getDelta();
+        var nowTime = +new Date();
+        if (lastTime) {
+            velY = (delta.y / (nowTime - lastTime)) * 1000;
+            velY = Math.max(Math.min(velY, 3000), -3000);
+        }
+        lastTime = nowTime;
+        // p0_1.y += delta.y;
+        if (game['isMove']) {
+            p0_1.moveY(delta.y);//调用case‘p0_1’中定义的moveY函数，并且给它一个delta.y的参数
+        }
+    },
+    function (touch, event) {
+        game['isMove'] = true;
+    }
+);
+this.moveY = function (deltaY) {
+    //deltay是滑动距离
+    //minY为初始y值，maxY为当前能滑动的最大y值
+    self.y = Math.min(Math.max(self.y + deltaY, minY), maxY)
+    self.percent = (self.y - minY) / (maxY - minY)
+    game['nowY'] = self.y
+    //game['nowY']及时存储滑动到哪了
+    checkY(self.y, self.percent)
+    // console.log(self.y,maxY,'y,maxY');
+}
+```
