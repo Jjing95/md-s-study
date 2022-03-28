@@ -3,7 +3,7 @@
 [美团美好生活长卷](https://m.h5in.net/meituan_test/)是我在学习长图项目中用来练手的第一个项目，接下来我将以这个项目为基础来梳理我对长图项目的文件目录和技术的理解。
 ***
 ## 长图H5项目
-我所掌握的长图项目是基于公司所搭建的**cocos**框架来实现的，主要是通过*html*，*css*和*javascript*等一系列前端语言实现的一个移动端用户长屏H5互动页面。
+我所掌握的长图项目是公司基于[cocos](https://www.cocos.com/)所搭建的框架来实现的，主要是通过**html**，**css**和**javascript**等一系列前端语言实现的一个移动端用户长屏H5互动页面。
 
 ### 1、项目关键代码文件
 #### 1）index.html
@@ -40,7 +40,8 @@ resize: function () {
 ```
 #### 3）game.js
 在这个文件里则主要放置项目所需的接口函数以及一些功能函数，以下是部分示例代码
-<br>微信端分享部分
+
+* 微信端分享部分
 ```javascript
 setShare: function (title, desc, desc2) {
     var link = h5_config.baseLink + h5_config.para;
@@ -71,7 +72,7 @@ setShare: function (title, desc, desc2) {
     })
 }
 ```
-通过后端给到的接口将图片转化成base64
+* 通过后端给到的接口将图片转化成base64
 ```javascript
 getBase64:function(data,callback){
     $.get('./api/getBase64/', {
@@ -90,5 +91,5 @@ getBase64:function(data,callback){
 项目中的逻辑代码部分则主要在这个文件中实现，在这个文件中来绘制出UI部分页面，每个项目的代码基本上都不太一样，这边就不过多展示。
 
 ### 2、项目关键技术点
-#### 1)[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/edit/main/organizeLayers.md)
-#### 2)[ani_config、effect_config以及res_config(帧动画、音效以及分部加载)的配置规范]()
+#### 1）[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/edit/main/organizeLayers.md)
+#### 2）[ani_config、effect_config以及res_config(帧动画、音效以及分部加载)的配置规范]()
