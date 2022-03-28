@@ -90,4 +90,5 @@ getBase64:function(data,callback){
 项目中的逻辑代码部分则主要在这个文件中实现，在这个文件中来绘制出UI部分页面，每个项目的代码基本上都不太一样，这边就不过多展示。
 
 ### 2、项目关键技术点
-#### 1）[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/edit/main/organizeLayers.md)
+#### 1)[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/edit/main/organizeLayers.md)
+#### 2)[ani_config、effect_config以及res_config(帧动画、音效以及分部加载)的配置规范]()
