@@ -1,8 +1,7 @@
 # 长图技术梳理
 <a href="https://m.h5in.net/meituan_test/"><img src="./icon.jpg  " width="50px" height="50px" align="left" hspace="10" vspace="6"></a>
 [美团美好生活长卷](https://m.h5in.net/meituan_test/)是我在学习长图项目中用来练手的第一个项目，接下来我将以这个项目为基础来梳理我对长图项目的文件目录和技术的理解。
-
----
+***
 ## 长图H5项目
 我所掌握的长图项目是基于公司所搭建的**cocos**框架来实现的，主要是通过*html*，*css*和*javascript*等一系列前端语言实现的一个移动端用户长屏H5互动页面。
 
@@ -41,7 +40,7 @@ resize: function () {
 ```
 #### 3）game.js
 在这个文件里则主要放置项目所需的接口函数以及一些功能函数，以下是部分示例代码
-微信端分享部分
+<br>微信端分享部分
 ```javascript
 setShare: function (title, desc, desc2) {
     var link = h5_config.baseLink + h5_config.para;
@@ -91,3 +90,4 @@ getBase64:function(data,callback){
 项目中的逻辑代码部分则主要在这个文件中实现，在这个文件中来绘制出UI部分页面，每个项目的代码基本上都不太一样，这边就不过多展示。
 
 ### 2、项目关键技术点
+#### 1）[长图设计稿处理规范问题](https://github.com/Jjing95/md-s-study/edit/main/organizeLayers.md)
