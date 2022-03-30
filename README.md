@@ -159,11 +159,11 @@ this.moveY = function (deltaY) {
 * 起初在项目图层处理时，需要将每个按钮的图层名称后面加上--**button**
 * 然后再通过在**按钮元素.setCallback**的回调函数中控制点击以后触发的事件
 ```javascript
-setCallback: function (endCallback, moveCallback, startCallback) {
-	this.callback = endCallback;
-	this.moveCallback = moveCallback;
-	this.startCallback = startCallback;
-}
+var item = self.getChildByName(" "); //" "中为图层名
+item.setCallback(function () {
+ //按钮点击后的一系列事件	    
+})
+
 ```
 #### 5）[长图资源过多时的分部加载](https://github.com/Jjing95/md-s-study/blob/main/partial_loading.md)
 
