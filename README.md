@@ -7,7 +7,7 @@
 
 ### 1、项目关键代码文件
 #### 1）index.html
-设计实现项目加载页内容和适配原则以及引入原生css文件以及部分需要提前引入的js资源库。
+设计实现项目加载页内容和适配原则以及引入原生css文件以及部分需要提前引入的js资源库，下方为简单示例
 ```html
 <link type="text/css" rel="stylesheet" href="css/style.css">
 <div id="loading">
@@ -17,7 +17,7 @@
 <script src="libs/jquery-2.1.3.min.js"></script>
 ```
 #### 2）BaseScene.js
-长图最关键的适配原则就放置于这个文件夹中
+长图最关键的适配原则就放置于这个文件夹中,以下则是实现适配的关键函数
 ```javascript
 resize: function () {
     var w1 = window.innerWidth;
@@ -120,7 +120,7 @@ game.resList=[
 ];
 //123是psd处理时a后面的数字 0，500，2900是指开始加载的位置（提前加载），14318是最大的位置（也就是最后的位置），false代表是否加载过，8，2，2对应精灵图数分别有多少
 ```
-#### 3）实现长图滑动的关键代码函数，具体有在代码上进行注释
+#### 3）实现长图滑动的关键代码函数，具体解释有在代码上进行注释
 ```javascript
 this.setCallback(
     function (touch, event) {
@@ -156,7 +156,7 @@ this.moveY = function (deltaY) {
 }
 ```
 #### 4）长图中的按钮点击与实现
-* 起初在项目图层处理时，需要将每个按钮的图层名称后面加上**button**
+* 起初在项目图层处理时，需要将每个按钮的图层名称后面加上--**button**
 * 然后再通过在**按钮元素.setCallback**的回调函数中控制点击以后触发的事件
 ```javascript
 setCallback: function (endCallback, moveCallback, startCallback) {
