@@ -167,4 +167,4 @@ setCallback: function (endCallback, moveCallback, startCallback) {
 ```
 #### 5）[长图资源过多时的分部加载](https://github.com/Jjing95/md-s-study/blob/main/partial_loading.md)
 
-至此，以上就是我在长图项目的学习过程中，针对于我碰到的技术难点以及一系列重要技术点展开的知识梳理。完整代码：[link]()
+至此，以上就是我在长图项目的学习过程中，针对于我碰到的技术难点以及对一系列重要技术点展开的知识梳理。
