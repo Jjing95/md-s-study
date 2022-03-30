@@ -111,7 +111,7 @@ var effects=[
 ...
 ]
 ```
-* 分部加载res_config文件上方定义规范</br>
+* 分部加载配置文件**res_config**上方的定义规范</br>
 ```javascript
 game.resList=[
 	['1',0,4800,false,8], //fales可以直接改为true
@@ -156,8 +156,8 @@ this.moveY = function (deltaY) {
 }
 ```
 #### 4）长图中的按钮点击与实现
-* 起初在项目图层处理时，需要将每个按钮的图层名称后面加上--button
-* 然后再通过调用按钮元素.setCallback的回调函数中控制点击以后触发的事件
+* 起初在项目图层处理时，需要将每个按钮的图层名称后面加上**button**
+* 然后再通过在**按钮元素.setCallback**的回调函数中控制点击以后触发的事件
 ```javascript
 setCallback: function (endCallback, moveCallback, startCallback) {
 	this.callback = endCallback;
@@ -165,47 +165,6 @@ setCallback: function (endCallback, moveCallback, startCallback) {
 	this.startCallback = startCallback;
 }
 ```
-#### 5）在何处处理一开始就需要加载的内容，以及如何进行分部加载操作
-* 在何处调用最先需要加载的内容 </br>
-放在BaseLayer.js里面的onEnter函数里，调用this.initUI()函数的时候则会一次性的加载进来。
-* 长图加载资源过多时如何进行分部加载</br> 
-在处理图层时需要注意所有元素都需要处理，但是不需要写入信息和打包，背景和所有按钮都放在一开始就加载的psd里;</br>
-将需要分步加载的资源整理分成不同的psd文件，然后剩下必须要加载的整合成一个psd，处理记录信息，并分开来拼合成精灵图，这样需要使用哪个资源就只需要加载该资源所在的精灵图，剩下来的就不需要加载了;</br>
-在处理完图层和数据之后要在config.js里面把和后面加载的东西一样的部分给删掉，防止预加载
-* 代码部分需要注意,滑动的时候异步加载，通过传参调用tlayer.js中封装好的addEles函数，实则调用的是game.js中的loadELse函数
-```javascript
-//tlayer.js
-addElse: function (num, name, callback) {
-	var self = this;
-	game['loadElse'](num, name, function (num, name) {
-    		// console.log(game['resources']['res' + name])
-    		cc.loader.load(game['resources']['res' + name],
-		function (result, count, loadedCount) {
-	    		// console.log(result)
-		},
-		function () {
-	    		for (var i = 0; i < num; i++) {
-				cc.spriteFrameCache.addSpriteFrames(game['baseUrl'] + 'res/' + name + '/GameAssets_' + i + '.plist', game['baseUrl'] + 'res/' + name + '/GameAssets_' + i + '.png');
+#### 5）[长图资源过多时的分部加载](https://github.com/Jjing95/md-s-study/blob/main/partial_loading.md)
 
-	    		}
-	    		self.initUI(name);
-	    		callback && callback()
-
-		});
-	})
-},
-//game.js
-loadElse: function (num, name, callback) {
-	var g_resources2 = this['resources']['res' + name];
-        // console.log(num)
-        //加载对应年代的精灵图
-        for (var i = 0; i < num; i++) {
-            g_resources2.push(game['baseUrl'] + 'res/' + name + '/GameAssets_' + i + '.png')
-            g_resources2.push(game['baseUrl'] + 'res/' + name + '/GameAssets_' + i + '.plist')
-
-        }
-        // console.log(g_resources2)
-        callback && callback(num, name);
-},
-```
-
+至此，以上就是我在长图项目的学习过程中，针对于我碰到的技术难点以及一系列重要技术点展开的知识梳理。完整代码：[link]()
